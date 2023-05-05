@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  agent: one
+  content: MyString
+  subject: MyString
+  read_receipt_user: false
+  read_receipt_manager: false
+  reaction_user: MyString
+  reaction_manager: MyString
+
+two:
+  user: two
+  agent: two
+  content: MyString
+  subject: MyString
+  read_receipt_user: false
+  read_receipt_manager: false
+  reaction_user: MyString
+  reaction_manager: MyString

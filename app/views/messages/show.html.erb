@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @message.user_id %>
+</p>
+
+<p>
+  <strong>Agent:</strong>
+  <%= @message.agent_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @message.content %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @message.subject %>
+</p>
+
+<p>
+  <strong>Read receipt user:</strong>
+  <%= @message.read_receipt_user %>
+</p>
+
+<p>
+  <strong>Read receipt manager:</strong>
+  <%= @message.read_receipt_manager %>
+</p>
+
+<p>
+  <strong>Reaction user:</strong>
+  <%= @message.reaction_user %>
+</p>
+
+<p>
+  <strong>Reaction manager:</strong>
+  <%= @message.reaction_manager %>
+</p>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>
