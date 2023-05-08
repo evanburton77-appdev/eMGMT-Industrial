@@ -17,14 +17,11 @@
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div class="field">
-    <%= form.label :agent_id %>
-    <%= form.text_field :agent_id %>
-  </div>
+
 
   <div class="field">
     <%= form.label :description %>
@@ -33,7 +30,7 @@
 
   <div class="field">
     <%= form.label :industry %>
-    <%= form.text_field :industry %>
+    <%= form.select :industry, ["Actor", "Vocalist", "Instrumentalist", "Athlete", "Influencer", "Radio Host", "Writer"] %>
   </div>
 
   <div class="actions">

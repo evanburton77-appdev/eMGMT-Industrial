@@ -4,10 +4,12 @@ class MessagesController < ApplicationController
   # GET /messages or /messages.json
   def index
     @messages = Message.all
+    @the_user = User.find_by!(id: current_user.id)
   end
 
   # GET /messages/1 or /messages/1.json
   def show
+    @the_user = User.find_by!(id: current_user.id)
   end
 
   # GET /messages/new
@@ -25,7 +27,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to message_url(@message), notice: "Message was successfully created." }
+        format.html { redirect_to message_url(@message.agent_id), notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +67,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:user_id, :agent_id, :content, :subject, :read_receipt_user, :read_receipt_manager, :reaction_user, :reaction_manager)
+      params.require(:message).permit(:user_id, :agent_id, :content, :subject, :read_receipt_user, :read_receipt_manager, :reaction_user, :reaction_manager, :sender_id)
     end
 end

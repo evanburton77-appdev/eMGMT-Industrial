@@ -19,7 +19,7 @@
       <tr>
         <td><%= gig.title %></td>
         <td><%= gig.user_id %></td>
-        <td><%= gig.agent_id %></td>
+        <td><% if gig.agent_id.present? %> <%= gig.agent_id %> <% else %> None Yet. <% end %></td>
         <td><%= gig.description %></td>
         <td><%= gig.industry %></td>
         <td><%= link_to 'Show', gig %></td>
