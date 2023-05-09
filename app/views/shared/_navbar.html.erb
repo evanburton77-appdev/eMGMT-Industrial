@@ -13,7 +13,11 @@
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="/gigs">Gigs</a>
-          <a class="dropdown-item" href="/messages">Messages</a>
+          <% if user_signed_in? %>
+            <a class="dropdown-item" href="/messages">Messages</a>
+          <% elsif agent_signed_in? %>
+            <a class="dropdown-item" href="/agent_messages">Messages</a>
+          <% end %>
         </div>
       </li>
     </ul>
@@ -21,6 +25,10 @@
     <ul class="navbar-nav"> 
 
     <% if user_signed_in? %>
+            <li class="nav-item">
+        
+          <%= link_to "AI Agent", "#", class: "nav-link" %>
+        </li>
         <li class="nav-item">
         
           <%= link_to "Messages", "/messages", class: "nav-link" %>

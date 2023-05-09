@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :requests
+  get "/messages/new/:id" => "messages#new", as: :new_message_user
+  get "/requests/new/:id" => "requests#new", as: :new_request_user
   resources :messages
   resources :gigs
   devise_for :agents

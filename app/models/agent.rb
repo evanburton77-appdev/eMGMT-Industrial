@@ -39,5 +39,6 @@ class Agent < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :messages, dependent: :destroy
   has_many :gigs, dependent: :destroy
+  has_many :requests, dependent: :destroy
   enum timezone: { EST: "EST", CST: "CST", MST: "MST", PST: "PST" }
 end

@@ -24,4 +24,5 @@
 class Gig < ApplicationRecord
   belongs_to :user
   belongs_to :agent, counter_cache: true, optional: true
+  has_many :requests, dependent: :destroy
 end

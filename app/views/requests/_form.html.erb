@@ -1,0 +1,35 @@
+<%= form_with(model: request) do |form| %>
+  <% if request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+        <% request.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, value: params.fetch(:id) %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :agent_id, value: current_agent.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gig_id %>
+    <%= form.collection_select :gig_id, Gig.where(user_id: params.fetch(:id)).order(:title), :id, :title %>
+  </div>
+
+  <div class="field">
+
+    <%= form.hidden_field :status, value: "pending" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Request", class: "btn btn-success btn-lg btn-rounded float-start" %>
+  </div>
+<% end %>

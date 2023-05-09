@@ -12,46 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id, value: params.fetch(:id) %>
   </div>
 
   <div class="field">
-    <%= form.label :agent_id %>
-    <%= form.text_field :agent_id %>
+    <%= form.hidden_field :agent_id, value: current_agent.id %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.label "Message", class: "form-label" %>
+    <%= form.text_area :content, class: "form-control", rows: "4" %>
   </div>
 
-  <div class="field">
-    <%= form.label :subject %>
-    <%= form.text_field :subject %>
-  </div>
+    <%= form.hidden_field :sender_id, value: current_agent.id %>
 
-  <div class="field">
-    <%= form.label :read_receipt_user %>
-    <%= form.check_box :read_receipt_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :read_receipt_manager %>
-    <%= form.check_box :read_receipt_manager %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reaction_user %>
-    <%= form.text_field :reaction_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reaction_manager %>
-    <%= form.text_field :reaction_manager %>
-  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Send", class: "btn btn-light btn-lg btn-rounded float-end" %>
   </div>
 <% end %>

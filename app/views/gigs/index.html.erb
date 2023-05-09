@@ -20,17 +20,25 @@
     </ul>
   </div>
   <% Gig.where(agent_id: nil).each do |gig| %>
+  <% if Request.where(gig_id: gig.id).where(status: "accepted").present? %>
+  <% else %>
   <div class="card-body">
     <a href="gigs/<%= gig.id %>" style="text-decoration: none" ><h5 class="card-title"><%= gig.title %> - Industry: <%= gig.industry %></h5></a>
     <p class="card-text"><%= gig.description %></p>
-    <% if gig.user.id == current_user.id %>
+    <% if user_signed_in? && gig.user.id == current_user.id %>
       <%= link_to 'Edit Gig', edit_gig_path(gig), class: "btn btn-success" %>
       <%= link_to 'Delete Gig', gig, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-    <% else %>
-      <a href="#" class="btn btn-primary">Message <%= gig.user.first_name %></a>
+    <% elsif user_signed_in? %>
+      <a href="<%= new_message_user_path(gig.user.id) %>" name="id: <%= gig.user.id %>" class="btn btn-primary">Message <%= gig.user.first_name %></a>
       <a href="#" class="btn btn-success">Sign <%= gig.user.first_name %></a>
+      <% elsif agent_signed_in? %>
+        <a href="<%= new_message_user_path(gig.user.id) %>" name="id: <%= gig.user.id %>" class="btn btn-primary">Message <%= gig.user.first_name %></a>
+        
+        <a href="<%= new_request_user_path(gig.user.id) %>" class="btn btn-success">Sign <%= gig.user.first_name %></a>
+
     <% end %>
     <hr>
   </div>
+  <% end %> 
   <% end %>
 </div>

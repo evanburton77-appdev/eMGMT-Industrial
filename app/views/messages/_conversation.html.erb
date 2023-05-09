@@ -41,6 +41,18 @@
           <% end %>
 
           <% end %>
+
+            <% if Request.where(user_id: current_user.id).where(agent_id: params.fetch(:id)).first.present? %>
+            <%= form_with(model: Request.where(user_id: current_user.id).where(agent_id: params.fetch(:id)).first) do |form| %>
+          
+            <div class="field">
+            <%= form.text_field :status, value: "accepted" %>
+            </div>
+            <%= form.submit "Accept", class: "btn btn-success btn-lg btn-rounded float-end" %>
+            <% end %>
+
+            <button class="btn btn-danger btn-lg btn-rounded float-end">Reject for <%=  Request.where(user_id: current_user.id).where(agent_id: params.fetch(:id)).first.gig.title %></button>
+          <% end %>  
               <%= form_with(model: Message.new, class: "form-outline form-white", method: "post") do |form| %>
           <li class="mb-3">
             <div class="form-outline form-white">

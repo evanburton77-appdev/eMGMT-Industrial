@@ -131,6 +131,12 @@ GEM
     diffy (3.4.2)
     e2mmap (0.1.0)
     erubi (1.11.0)
+    faraday (2.7.4)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
     git (1.12.0)
       addressable (~> 2.8)
@@ -175,11 +181,14 @@ GEM
     mini_portile2 (2.8.0)
     minitest (5.16.3)
     msgpack (1.4.5)
+    multipart-post (2.3.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.13.9-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.22.1)
@@ -285,6 +294,9 @@ GEM
       rubocop (~> 1.19)
     ruby-graphviz (1.2.5)
       rexml
+    ruby-openai (4.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -409,6 +421,7 @@ DEPENDENCIES
   rollbar
   rubocop-rails
   rubocop-rspec
+  ruby-openai
   rufo
   sass-rails (>= 6)
   selenium-webdriver

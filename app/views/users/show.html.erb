@@ -113,8 +113,8 @@
             <h5 class="my-3"><%= @the_user.first_name %></h5>
             <p class="text-muted mb-1"><%= Gig.where(user_id: @the_user.id).first.industry %></p>
             <p class="text-muted mb-1"><%= @the_user.timezone %></p>
-              <% if Gig.all.where({ :user_id => @the_user.id }).present? && Gig.all.where({ :user_id => @the_user.id }).first.agent_id.present? %>
-        <p class="text-muted mb-4"><%= Agent.where({ :id => Gig.all.where({ :user_id => @the_user.id }).agent_id }).first.first_name %></p>
+              <% if Request.all.where(user_id: @the_user).where(status: "accepted").first.present? %>
+        <p class="text-muted mb-4">Agent: <%= Agent.where({ :id => Request.all.where(user_id: @the_user).where(status: "accepted").first.agent_id }).first.first_name %></p>
         <% else %>
         <p class="text-muted mb-4">Unsigned</p>
         <% end %>
@@ -205,7 +205,13 @@
                 <p class="mb-4"><span class="text-primary font-italic me-1"><%= link_to gig.title,  "/gigs/#{gig.id}", style: 'text-decoration: none' %></span> <%= gig.industry %>
                 </p>
                 <div class="card-body">
+
     <p class="card-text"><%= gig.description %></p>
+      <% if Request.all.where(user_id: @the_user).where(status: "accepted").where(gig_id: gig.id).first.present? %>
+        <p class="card-text">Agent: <%= Agent.where({ :id => Request.all.where(user_id: @the_user).where(status: "accepted").first.agent_id }).first.first_name %></p>
+        <% else %>
+        <p class="card-text">Unsigned</p>
+        <% end %>
   </div>
               </div>
             </div>
