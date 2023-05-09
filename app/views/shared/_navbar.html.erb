@@ -25,6 +25,10 @@
         
           <%= link_to "Messages", "/messages", class: "nav-link" %>
         </li>
+                <li class="nav-item">
+        
+          <%= link_to "Your Profile", user_path(current_user.id), class: "nav-link" %>
+        </li>
         <li class="nav-item">
           
           <%= link_to "Edit #{current_user.first_name}", edit_user_registration_path, class: "nav-link" %>
@@ -33,7 +37,14 @@
           <%= link_to "Sign out", destroy_user_session_path, class: "nav-link", method: :delete %>
         </li>
         <% elsif agent_signed_in? %>
-
+        <li class="nav-item">
+        
+          <%= link_to "Messages", "/agent_messages", class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+        
+          <%= link_to "Your Profile", agent_path(current_agent.id), class: "nav-link" %>
+        </li>
         <li class="nav-item">
           <%= link_to "Edit #{current_agent.first_name}", edit_agent_registration_path, class: "nav-link" %>
         </li>

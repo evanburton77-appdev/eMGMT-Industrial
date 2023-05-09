@@ -9,17 +9,17 @@
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="true" href="#">Unsigned</a>
+        <a class="nav-link active" aria-current="true" href="#">Signed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= index_signed_path %>">Signed</a>
+        <a class="nav-link" href="/gigs">Unsigned</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled">All</a>
       </li>
     </ul>
   </div>
-  <% Gig.where(agent_id: nil).each do |gig| %>
+  <% Gig.where.not(agent_id: nil).each do |gig| %>
   <div class="card-body">
     <a href="gigs/<%= gig.id %>" style="text-decoration: none" ><h5 class="card-title"><%= gig.title %> - Industry: <%= gig.industry %></h5></a>
     <p class="card-text"><%= gig.description %></p>

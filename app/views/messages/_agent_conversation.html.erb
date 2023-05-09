@@ -1,16 +1,16 @@
       <div class="col-md-6 col-lg-7 col-xl-7">
 
         <ul class="list-unstyled text-white">
-        <% message_list = Message.where(user_id: current_user.id).where(agent_id: params.fetch("id")).order(:updated_at).each do |member|%>
+        <% message_list = Message.where(agent_id: current_agent.id).where(user_id: params.fetch("id")).order(:updated_at).each do |member|%>
 
-        <% if member.sender_id == current_user.id %>
+        <% if member.sender_id == current_agent.id %>
           <li class="d-flex justify-content-between mb-4">
-            <img src="<%= current_user.photo %>" alt="avatar"
+            <img src="<%= current_agent.photo %>" alt="avatar"
               class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
             <div class="card mask-custom">
               <div class="card-header d-flex justify-content-between p-3"
                 style="border-bottom: 1px solid rgba(255,255,255,.3);">
-                <p class="fw-bold mb-0"><%= current_user.first_name %></p>
+                <p class="fw-bold mb-0"><%= current_agent.first_name %></p>
                 <p class="text-light small mb-0"><i class="far fa-clock"></i> <%= member.updated_at %></p>
               </div>
               <div class="card-body">
@@ -26,7 +26,7 @@
             <div class="card mask-custom w-100">
               <div class="card-header d-flex justify-content-between p-3"
                 style="border-bottom: 1px solid rgba(255,255,255,.3);">
-                <p class="fw-bold mb-0"><%= member.agent.first_name %></p>
+                <p class="fw-bold mb-0"><%= member.user.first_name %></p>
                 <p class="text-light small mb-0"><i class="far fa-clock"></i> <%= member.updated_at %></p>
               </div>
               <div class="card-body">
@@ -35,7 +35,7 @@
                 </p>
               </div>
             </div>
-            <img src="<%= member.agent.photo %>" alt="avatar"
+            <img src="<%= member.user.photo %>" alt="avatar"
               class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
           </li>
           <% end %>
@@ -44,9 +44,9 @@
               <%= form_with(model: Message.new, class: "form-outline form-white", method: "post") do |form| %>
           <li class="mb-3">
             <div class="form-outline form-white">
-              <%= form.hidden_field :user_id, value: current_user.id %>
-              <%= form.hidden_field :agent_id, value: params.fetch("id") %>
-              <%= form.hidden_field :sender_id, value: current_user.id %>
+              <%= form.hidden_field :user_id, value: params.fetch("id") %>
+              <%= form.hidden_field :agent_id, value: current_agent.id %>
+              <%= form.hidden_field :sender_id, value: current_agent.id %>
               <%= form.text_area :content, class: "form-control", id: "textAreaExample3", rows: "4" %>
               <%= form.label "Message", class: "form-label", for: "textAreaExample3" %>
 

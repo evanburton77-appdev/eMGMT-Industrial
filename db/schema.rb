@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_08_201137) do
+ActiveRecord::Schema.define(version: 2023_05_09_155317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 2023_05_08_201137) do
     t.integer "gigs_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "website"
+    t.string "twitter"
+    t.string "instagram"
+    t.string "facebook"
+    t.string "phone"
+    t.string "mobile"
+    t.string "address"
     t.index ["email"], name: "index_agents_on_email", unique: true
     t.index ["reset_password_token"], name: "index_agents_on_reset_password_token", unique: true
   end

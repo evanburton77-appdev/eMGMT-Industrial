@@ -6,6 +6,10 @@ class GigsController < ApplicationController
     @gigs = Gig.all
   end
 
+  def index_signed
+    @gigs = Gig.all
+  end
+
   # GET /gigs/1 or /gigs/1.json
   def show
   end

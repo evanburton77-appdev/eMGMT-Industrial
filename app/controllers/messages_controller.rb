@@ -7,6 +7,15 @@ class MessagesController < ApplicationController
     @the_user = User.find_by!(id: current_user.id)
   end
 
+  def agent_messages
+    @messages = Message.all
+    @the_agent = Agent.find_by!(id: current_agent.id)
+  end
+
+  def agent_show
+    @the_agent = Agent.find_by!(id: current_agent.id)
+  end
+
   # GET /messages/1 or /messages/1.json
   def show
     @the_user = User.find_by!(id: current_user.id)
@@ -27,8 +36,13 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to message_url(@message.agent_id), notice: "Message was successfully created." }
-        format.json { render :show, status: :created, location: @message }
+        if user_signed_in?
+          format.html { redirect_to message_url(@message.agent_id), notice: "Message was successfully created." }
+          format.json { render :show, status: :created, location: @message }
+        elsif agent_signed_in?
+          format.html { redirect_to agent_messages_url(@message.user_id), notice: "Message was successfully created." }
+          format.json { render :show, status: :created, location: @message }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @message.errors, status: :unprocessable_entity }

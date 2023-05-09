@@ -4,19 +4,26 @@
 #
 #  id                     :bigint           not null, primary key
 #  about                  :string
+#  address                :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  facebook               :string
 #  first_name             :string
 #  gigs_count             :integer          default(0)
+#  instagram              :string
 #  last_name              :string
 #  linkedin_url           :string
 #  messages_count         :integer          default(0)
+#  mobile                 :string
 #  organization_name      :string
+#  phone                  :string
 #  photo                  :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  timezone               :string
+#  twitter                :string
+#  website                :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
