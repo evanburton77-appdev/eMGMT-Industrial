@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_09_184522) do
+ActiveRecord::Schema.define(version: 2023_05_10_144407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 2023_05_09_184522) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["agent_id"], name: "index_gigs_on_agent_id"
     t.index ["user_id"], name: "index_gigs_on_user_id"
+  end
+
+  create_table "gpts", force: :cascade do |t|
+    t.string "content"
+    t.string "role"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_gpts_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -110,6 +119,7 @@ ActiveRecord::Schema.define(version: 2023_05_09_184522) do
 
   add_foreign_key "gigs", "agents"
   add_foreign_key "gigs", "users"
+  add_foreign_key "gpts", "users"
   add_foreign_key "messages", "agents"
   add_foreign_key "messages", "users"
   add_foreign_key "requests", "agents"

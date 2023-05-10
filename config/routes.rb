@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :gpts
+  get "/ai/:id" => "gpts#show", as: :ai_show
   resources :requests
   get "/messages/new/:id" => "messages#new", as: :new_message_user
   get "/requests/new/:id" => "requests#new", as: :new_request_user

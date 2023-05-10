@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @gpt.content %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @gpt.role %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @gpt.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_gpt_path(@gpt) %> |
+<%= link_to 'Back', gpts_path %>

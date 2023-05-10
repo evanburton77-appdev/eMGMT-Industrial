@@ -1,15 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container">
-  <%= link_to "eMGMT", root_path, class: "navbar-brand" %>
+  <%= link_to url: root_path, class: "navbar-brand" do %>
+  <%= image_tag("emgmt.png", border: 0, class: "d-inline-block align-text-top", alt: "Logo", width: "30", height: "24") %>
+  <% end %>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarScroll">
+
     <ul class="navbar-nav me-auto">
+    <div class="container-fluid">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+  <!--
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Pages
+           Pages
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="/gigs">Gigs</a>
@@ -20,30 +30,88 @@
           <% end %>
         </div>
       </li>
+      -->
     </ul>
 
     <ul class="navbar-nav"> 
 
     <% if user_signed_in? %>
+
             <li class="nav-item">
         
-          <%= link_to "AI Agent", "#", class: "nav-link" %>
+          <%= link_to "/gigs", class: "nav-link" do %> <i class="fa-solid fa-briefcase"></i> Gigs <% end %>
+        </li>
+        <li class
+            <li class="nav-item">
+        
+          <%= link_to ai_show_path(current_user.id), class: "nav-link" do %> <i class="fa-solid fa-robot"></i> AI Agent <% end %>
         </li>
         <li class="nav-item">
         
-          <%= link_to "Messages", "/messages", class: "nav-link" %>
+          <%= link_to "/messages", class: "nav-link" do %> <i class="fa-solid fa-envelope-open-text"></i> Messages <% end %>
         </li>
+        <!--
                 <li class="nav-item">
         
-          <%= link_to "Your Profile", user_path(current_user.id), class: "nav-link" %>
+          <%= link_to user_path(current_user.id), class: "nav-link" do %> <i class="fa-solid fa-address-card"></i> View Profile <% end %>
         </li>
         <li class="nav-item">
           
-          <%= link_to "Edit #{current_user.first_name}", edit_user_registration_path, class: "nav-link" %>
+          <%= link_to edit_user_registration_path, class: "nav-link" do %> <i class="fa-solid fa-pen"></i> Edit Profile <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "Sign out", destroy_user_session_path, class: "nav-link", method: :delete %>
+          <%= link_to destroy_user_session_path, class: "nav-link", method: :delete do %> <i class="fa-solid fa-right-from-bracket"></i> Sign out <% end %>
         </li>
+
+ -->      
+
+            <li class="navbar-nav">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <img src="<%= current_user.photo %>" alt="Logo" width="24" height="24" class="rounded-circle d-inline-block align-text-top">
+        </a>
+        <div class="dropdown-menu">
+         <%= link_to user_path(current_user.id), class: "nav-link" do %> 
+        <img src="<%= current_user.photo %>" alt="Logo" width="50" height="50" style="padding: 5px" class="rounded-circle d-inline-block align-text-top"> <strong> <%= current_user.first_name %> </strong><% end %>
+           <%= link_to user_path(current_user.id), class: "dropdown-item" do %> <i class="fa-solid fa-address-card"></i> View Profile <% end %>
+           <hr>
+            <%= link_to edit_user_registration_path, class: "dropdown-item" do %> <i class="fa-solid fa-pen"></i> Edit Profile <% end %>
+            <hr>
+            <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %> <i class="fa-solid fa-right-from-bracket"></i> Sign out <% end %>
+        </div>
+      </li>
+    </ul></li>
+<!--
+    <li class="nav-item py-1 col-12 col-lg-auto">
+            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+            <hr class="d-lg-none text-black-50">
+          </li>
+-->
+<li class="nav-item py-1 col-12 col-lg-auto">
+            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+            <hr class="d-lg-none text-white-50">
+          </li>
+            <li class="navbar-nav">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           v4.1.1
+        </a>
+        <div class="dropdown-menu">
+         <%= link_to "#", class: "dropdown-item" do %> 
+        <strong>Latest (4.1.x)</strong> <% end %>
+           <%= link_to "#", class: "dropdown-item" do %>v4.0.2<% end %>
+           <hr>
+           <p style="margin: 13px; color: gray;">Previous Releases</p>
+            <%= link_to "#", class: "dropdown-item" do %> 3.0.1 <% end %>
+            <%= link_to "#", class: "dropdown-item", method: :delete do %> 2.1.1 <% end %>
+            <hr>
+            <%= link_to "#", class: "dropdown-item", method: :delete do %> All Versions <% end %>
+        </div>
+      </li>
+    </ul></li>
+
         <% elsif agent_signed_in? %>
         <li class="nav-item">
         

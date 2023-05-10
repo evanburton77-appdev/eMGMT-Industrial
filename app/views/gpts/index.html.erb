@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Gpts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Role</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gpts.each do |gpt| %>
+      <tr>
+        <td><%= gpt.content %></td>
+        <td><%= gpt.role %></td>
+        <td><%= gpt.user_id %></td>
+        <td><%= link_to 'Show', gpt %></td>
+        <td><%= link_to 'Edit', edit_gpt_path(gpt) %></td>
+        <td><%= link_to 'Destroy', gpt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gpt', new_gpt_path %>
