@@ -13,7 +13,7 @@
         <div class="card chat-box" id="chat2">
 
 
-      <% gpt_list = Gpt.order(:updated_at).each do |gpt| %>
+      <% gpt_list = Gpt.order(:created_at).each do |gpt| %>
     <% if (gpt.role == "user" && gpt.user_id == current_user.id) || (gpt.role == "assistant" && gpt.updated_at > Gpt.where(user_id: current_user.id).first.updated_at) %>
       <div class="card-body chat-message" data-mdb-perfect-scrollbar="true">
         <% if gpt.role == "user" && gpt.user_id == current_user.id %>
@@ -27,7 +27,7 @@
             </div>
 
 
-        <% elsif gpt.role == "assistant" && gpt.updated_at > Gpt.where(user_id: current_user.id).first.updated_at %>
+        <% elsif gpt.role == "assistant" && gpt.recipient_id == current_user.id %>
 
 
             <div class="d-flex flex-row justify-content-end mb-4 pt-1">

@@ -2,12 +2,13 @@
 #
 # Table name: gpts
 #
-#  id         :bigint           not null, primary key
-#  content    :string
-#  role       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id           :bigint           not null, primary key
+#  content      :string
+#  role         :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  recipient_id :integer
+#  user_id      :bigint           not null
 #
 # Indexes
 #
