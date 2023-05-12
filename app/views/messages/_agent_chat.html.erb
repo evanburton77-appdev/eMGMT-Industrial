@@ -18,12 +18,12 @@
                       class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
                     <div class="pt-1">
                       <p class="fw-bold mb-0"><%= member.user.first_name %></p>
-                      <p class="small text-white"><%= Message.where(agent_id: current_agent.id).where(user_id: member.user.id).where(sender_id: member.user.id).order(:updated_at).last.content %></p>
+                     <% if Message.where(agent_id: current_agent.id).where(user_id: member.user.id).where(sender_id: member.user.id).order(:updated_at).last.present? %> <p class="small text-white"><%= Message.where(agent_id: current_agent.id).where(user_id: member.user.id).where(sender_id: member.user.id).order(:updated_at).last.content %></p><% else %><p class="small text-white">No messages yet. </p> <% end %>
                     </div>
                   </div>
                   <div class="pt-1">
-                    <p class="small text-white mb-1"><%= time_ago_in_words(Message.where(user_id: member.user.id).where(agent_id: current_agent.id).where(sender_id: member.user.id).order(:updated_at).last.updated_at) %></p>
-                    <span class="badge bg-danger float-end">1</span>
+                    <% if Message.where(agent_id: current_agent.id).where(user_id: member.user.id).where(sender_id: member.user.id).order(:updated_at).last.present? %>  <p class="small text-white mb-1"><%= time_ago_in_words(Message.where(user_id: member.user.id).where(agent_id: current_agent.id).where(sender_id: member.user.id).order(:updated_at).last.updated_at) %></p>
+                    <span class="badge bg-danger float-end">1</span><% end %>
                   </div>
                 </a>
               </li>

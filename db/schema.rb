@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_10_144407) do
+ActiveRecord::Schema.define(version: 2023_05_12_195055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2023_05_10_144407) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
-    t.string "photo"
+    t.string "photo", default: "https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
     t.string "linkedin_url"
     t.string "timezone"
     t.string "organization_name"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2023_05_10_144407) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
-    t.string "photo"
+    t.string "photo", default: "https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg"
     t.string "timezone"
     t.string "about"
     t.integer "messages_count", default: 0

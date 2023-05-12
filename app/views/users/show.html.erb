@@ -208,7 +208,7 @@
 
     <p class="card-text"><%= gig.description %></p>
       <% if Request.all.where(user_id: @the_user).where(status: "accepted").where(gig_id: gig.id).first.present? %>
-        <p class="card-text">Agent: <%= Agent.where({ :id => Request.all.where(user_id: @the_user).where(status: "accepted").first.agent_id }).first.first_name %></p>
+        <p class="card-text">Agent: <%= Agent.where({ :id => Request.all.where(user_id: @the_user).where(gig_id: gig.id).where(status: "accepted").first.agent_id }).first.first_name %></p>
         <% else %>
         <p class="card-text">Unsigned</p>
         <% end %>

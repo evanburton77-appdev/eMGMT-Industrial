@@ -6,16 +6,17 @@
 
     <div class="row d-flex justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-6">
-
-        <div class="card" id="chat2">
-          <div class="card-header d-flex justify-content-between align-items-center p-3">
+          <div class="card-header d-flex justify-content-between align-items-center p-3" style="background-color: white; border-radius: 15px">
             <h5 class="mb-0">My AI Agent</h5>
             <button type="button" class="btn btn-primary btn-sm" data-mdb-ripple-color="dark">eMGMT</button>
           </div>
+        <div class="card chat-box" id="chat2">
+
 
       <% gpt_list = Gpt.order(:updated_at).each do |gpt| %>
-      <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative;">
-        <% if gpt.role == "user" %>
+    <% if (gpt.role == "user" && gpt.user_id == current_user.id) || (gpt.role == "assistant" && gpt.updated_at > Gpt.where(user_id: current_user.id).first.updated_at) %>
+      <div class="card-body chat-message" data-mdb-perfect-scrollbar="true">
+        <% if gpt.role == "user" && gpt.user_id == current_user.id %>
             <div class="d-flex flex-row justify-content-start">
               <img src="<%= gpt.user.photo %>"
                 alt="avatar 1" class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" style="width: 45px; height: 100%;">
@@ -26,7 +27,7 @@
             </div>
 
 
-        <% else %>
+        <% elsif gpt.role == "assistant" && gpt.updated_at > Gpt.where(user_id: current_user.id).first.updated_at %>
 
 
             <div class="d-flex flex-row justify-content-end mb-4 pt-1">
@@ -39,21 +40,44 @@
                 alt="avatar 1" class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" style="width: 45px; height: 100%;">
             </div>
             
+            
 
         <% end %>
+     
           </div>
       <% end %>
+<% end %>
 
-
-          <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+         
+          </div>
+ 
+           <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3" style="background-color: white; border-radius: 15px;">
             <img src="<%= current_user.photo %>"
               alt="avatar 3" class="rounded-circle" style="width: 40px; height: 100%;">
-            <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
-              placeholder="Type message">
-            <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
+
+<%= form_with(model: Gpt.new) do |form| %>
+<div class="field">
+<%= form.hidden_field :user_id, value: current_user.id %>
+</div>
+
+<div class="field" style="float: left">
+<span style="display: block">
+<%= form.text_field :content, style: "width: 440px", class: "form-control form-control-lg", placeholder: "Dear AI Agent..." %></span>
+</div>
+
+<div class="field" style="float: left">
+<%= form.hidden_field :role, value: "user" %>
+</div>
+<a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
             <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
-            <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a>
-          </div>
+<div class="actions" style="float: left">
+  <%= button_tag type: "submit", class: "btn btn-link" do %>
+    <i class="fas fa-paper-plane"></i>
+  <% end %>
+</div>
+
+<% end %>
+            
         </div>
 
       </div>
@@ -66,26 +90,7 @@
 
 
 
-<!--
-<%= form_with(model: Gpt.new) do |form| %>
-<div class="field">
-<%= form.hidden_field :user_id, value: current_user.id %>
-</div>
 
-<div class="field">
-<%= form.label :content %>
-<%= form.text_area :content, rows: "10", cols: "80", placeholder: "Dear AI Agent..." %>
-</div>
 
-<div class="field">
-<%= form.hidden_field :role, value: "user" %>
-</div>
-
-<div class="actions">
-<%= form.submit "Send" %>
-</div>
-
-<% end %>
   </dd>
 </dl>
--->

@@ -33,12 +33,11 @@
     <%= form.select :industry, ["Actor", "Vocalist", "Instrumentalist", "Athlete", "Influencer", "Radio Host", "Writer"] %>
   </div>
 
-    <div class="field">
-    <%= form.label :agent %>
-    <%= form.hidden_field :agent, value: current_agent.id %>
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>  
 
   <div class="actions">
-    <%= form.submit "Request Sign" %>
+    <%= form.submit "Create Gig" %>
   </div>
 <% end %>

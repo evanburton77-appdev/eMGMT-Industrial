@@ -14,7 +14,7 @@
 #  messages_count         :integer          default(0)
 #  mobile                 :string
 #  phone                  :string
-#  photo                  :string
+#  photo                  :string           default("https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg")
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
