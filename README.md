@@ -16,7 +16,7 @@ Of course, if you are using this app as someone who is already a Professional Ag
 
 * Database creation
 
-* Database initialization
+* Database initialization - seeds.rb
 
 * Services (job queues, cache servers, search engines, etc.) GPT-3.5 and GPT-4
 
