@@ -58,6 +58,7 @@ class GigsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to gigs_url, notice: "Gig was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
