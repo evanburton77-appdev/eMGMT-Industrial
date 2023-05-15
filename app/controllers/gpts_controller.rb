@@ -29,7 +29,7 @@ class GptsController < ApplicationController
     respond_to do |format|
       if @gpt.save
 
-        client = OpenAI::Client.new(access_token: "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")
+        client = OpenAI::Client.new(access_token: ENV.fetch("OPEN_AI_TOKEN"))
 
         api_messages_array = Array.new
 
