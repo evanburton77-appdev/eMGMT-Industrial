@@ -39,9 +39,11 @@ class MessagesController < ApplicationController
         if user_signed_in?
           format.html { redirect_to message_url(@message.agent_id), notice: "Message was successfully created." }
           format.json { render :show, status: :created, location: @message }
+          format.js
         elsif agent_signed_in?
           format.html { redirect_to agent_messages_url(@message.user_id), notice: "Message was successfully created." }
           format.json { render :show, status: :created, location: @message }
+          format.js
         end
       else
         format.html { render :new, status: :unprocessable_entity }

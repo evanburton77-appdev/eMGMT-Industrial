@@ -1,0 +1,5 @@
+var added_message = $("<%= escape_javascript(render 'messages/message', message: @message) %>");
+added_message.hide();
+$("#message_1_form").before(added_message);
+added_message.slideDown();
+$("#message_1_form #textAreaExample3").val("");

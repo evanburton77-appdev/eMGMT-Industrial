@@ -1,4 +1,4 @@
-
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
  
 
 <section style="background-color: #eee;">
@@ -48,19 +48,20 @@
       <% end %>
 <% end %>
 
-         
+         <div id="new_gpt_form">
+         </div>
           </div>
  
            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3" style="background-color: white; border-radius: 15px;">
             <img src="<%= current_user.photo %>"
               alt="avatar 3" class="rounded-circle" style="width: 40px; height: 100%;">
 
-<%= form_with(model: Gpt.new) do |form| %>
+<%= form_with(model: Gpt.new, local: false) do |form| %>
 <div class="field">
 <%= form.hidden_field :user_id, value: current_user.id %>
 </div>
 
-<div class="field" style="float: left">
+<div id="new_gpt_form_box" class="field" style="float: left">
 <span style="display: block">
 <%= form.text_field :content, style: "width: 440px", class: "form-control form-control-lg", placeholder: "Dear AI Agent..." %></span>
 </div>

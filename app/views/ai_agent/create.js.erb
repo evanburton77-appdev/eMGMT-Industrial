@@ -1,0 +1,5 @@
+var added_gpt = $("<%= escape_javascript(render 'ai_agent/gpt', gpt: @gpt) %>");
+added_gpt.hide();
+$("#new_gpt_form").before(added_gpt);
+added_gpt.slideDown();
+$("#new_gpt_form_box #gpt_content").val("");

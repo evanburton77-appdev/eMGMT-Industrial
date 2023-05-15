@@ -53,18 +53,21 @@ class GptsController < ApplicationController
           },
         )
   
-        assistant_message = Gpt.new
-        assistant_message.user_id = 999
-        assistant_message.role = "assistant"
-        assistant_message.recipient_id = current_user.id
-        assistant_message.content = response.fetch("choices").at(0).fetch("message").fetch("content")
-        assistant_message.save
+        @assistant_message = Gpt.new
+        @assistant_message.user_id = 999
+        @assistant_message.role = "assistant"
+        @assistant_message.recipient_id = current_user.id
+        @assistant_message.content = response.fetch("choices").at(0).fetch("message").fetch("content")
+        @assistant_message.save
 
-        p assistant_message.errors.full_messages
+        p @assistant_message.errors.full_messages
 
 
         format.html { redirect_to ai_show_path(current_user.id)}
         format.json { render :show, status: :created, location: @gpt }
+        format.js do
+          render template: "ai_agent/create.js.erb"
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @gpt.errors, status: :unprocessable_entity }

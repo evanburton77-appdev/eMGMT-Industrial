@@ -1,10 +1,11 @@
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
       <div class="col-md-6 col-lg-7 col-xl-7">
 
         <ul class="list-unstyled text-white">
         <% message_list = Message.where(user_id: current_user.id).where(agent_id: params.fetch("id")).order(:updated_at).each do |member|%>
 
         <% if member.sender_id == current_user.id %>
-          <li class="d-flex justify-content-between mb-4">
+          <li id="message-card-user" class="d-flex justify-content-between mb-4">
             <img src="<%= current_user.photo %>" alt="avatar"
               class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
             <div class="card mask-custom">
@@ -22,7 +23,7 @@
           </li>
 
           <% else %>
-          <li class="d-flex justify-content-between mb-4">
+          <li id="message-card-sender" class="d-flex justify-content-between mb-4">
             <div class="card mask-custom w-100">
               <div class="card-header d-flex justify-content-between p-3"
                 style="border-bottom: 1px solid rgba(255,255,255,.3);">
@@ -53,8 +54,8 @@
 
             <button class="btn btn-danger btn-lg btn-rounded float-end">Reject for <%=  Request.where(user_id: current_user.id).where(agent_id: params.fetch(:id)).where(status: "pending").first.gig.title %></button>
           <% end %>  
-              <%= form_with(model: Message.new, class: "form-outline form-white", method: "post") do |form| %>
-          <li class="mb-3">
+              <%= form_with(model: Message.new, class: "form-outline form-white", method: "post", local: false) do |form| %>
+          <li id="<%= dom_id(@message) %>_form" class="mb-3">
             <div class="form-outline form-white">
               <%= form.hidden_field :user_id, value: current_user.id %>
               <%= form.hidden_field :agent_id, value: params.fetch("id") %>

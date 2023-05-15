@@ -1,3 +1,4 @@
+           <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
       <div class="col-md-6 col-lg-7 col-xl-7">
 
         <ul class="list-unstyled text-white">
@@ -42,8 +43,8 @@
 
           <% end %>
         
-              <%= form_with(model: Message.new, class: "form-outline form-white", method: "post") do |form| %>
-          <li class="mb-3">
+              <%= form_with(model: Message.new, class: "form-outline form-white", method: "post", local: false) do |form| %>
+          <li id="message_1_form" class="mb-3">
             <div class="form-outline form-white">
               <%= form.hidden_field :user_id, value: params.fetch("id") %>
               <%= form.hidden_field :agent_id, value: current_agent.id %>
