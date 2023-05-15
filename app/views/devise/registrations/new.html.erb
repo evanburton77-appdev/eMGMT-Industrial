@@ -5,28 +5,36 @@
 
   <div class="form-inputs">
     <%= f.input :first_name,
-                required: true
+                required: true,
+                class: "form-control"
                %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                input_html: { autocomplete: "email" },
+                class: "form-control" %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" },
+                class: "form-control" %>
     <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" },
+                class: "form-control" %>
     <%= f.input :timezone, 
                 required: true,
-                collection: ["EST", "CST", "MST", "PST"]
+                collection: ["EST", "CST", "MST", "PST"],
+                class: "form-control"
                %>
+    <%= f.input :photo, type: "file", id: "photo", name: "photo", class: "form-control", enctype: "multipart/form-data" %>
                <% if resource_name == :agent %>
-    <%= f.input :organization_name 
+    <%= f.input :organization_name,
+                class: "form-control" 
                
                %>  
-    <%= f.input :linkedin_url 
+    <%= f.input :linkedin_url,
+                class: "form-control" 
                 
                %>  
                <% else %>

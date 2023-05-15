@@ -38,6 +38,7 @@ class User < ApplicationRecord
   has_many :gigs, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :gpts, dependent: :destroy
+  mount_uploader :photo, PhotoUploader
   enum timezone: { EST: "EST", CST: "CST", MST: "MST", PST: "PST" }
     def self.ransackable_attributes(auth_object = User)
     ["about", "created_at", "email", "encrypted_password", "first_name", "id", "last_name", "messages_count", "photo", "remember_created_at", "reset_password_sent_at", "reset_password_token", "timezone", "updated_at"]

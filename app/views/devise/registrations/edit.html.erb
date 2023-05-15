@@ -21,7 +21,7 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :photo %>
+    <%= f.input :photo, type: "file", id: "photo", name: "photo", class: "form-control", enctype: "multipart/form-data" %>
 
   </div>
 

@@ -7,6 +7,8 @@ gem 'devise'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 gem 'rails_db'
 gem "ruby-openai"
+gem "carrierwave"
+gem "cloudinary"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
