@@ -26,5 +26,6 @@ Of course, if you are using this app as someone who is already a Professional Ag
 
 * ios/android app store app
 * own AI Model
+* refactoring
 
 * ...
