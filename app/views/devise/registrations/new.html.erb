@@ -27,7 +27,7 @@
                 collection: ["EST", "CST", "MST", "PST"],
                 class: "form-control"
                %>
-    <%= f.input :photo, type: "file", id: "photo", name: "photo", class: "form-control", enctype: "multipart/form-data" %>
+    <%= f.input :photo, type: "file", id: "photo", name: "photo", class: "form-control", enctype: "multipart/form-data", required: true %>
                <% if resource_name == :agent %>
     <%= f.input :organization_name,
                 class: "form-control" 
