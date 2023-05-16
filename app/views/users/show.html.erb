@@ -111,7 +111,7 @@
             <img src="<%= @the_user.photo %>" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3"><%= @the_user.first_name %></h5>
-            <p class="text-muted mb-1"><%= Gig.where(user_id: @the_user.id).first.industry %></p>
+           <% if Gig.where(user_id: @the_user.id).first.present? %> <p class="text-muted mb-1"><%= Gig.where(user_id: @the_user.id).first.industry %></p> <% end %>
             <p class="text-muted mb-1"><%= @the_user.timezone %></p>
               <% if Request.all.where(user_id: @the_user).where(status: "accepted").first.present? %>
         <p class="text-muted mb-4">Agent: <%= Agent.where({ :id => Request.all.where(user_id: @the_user).where(status: "accepted").first.agent_id }).first.first_name %></p>
@@ -197,6 +197,7 @@
             </div>
           </div>
         </div>
+    <% if Gig.where(user_id: @the_user.id).first.present? %>
       <div class="row">
         <% Gig.where(user_id: @the_user.id).each do |gig| %>
           <div class="col-md-6">
@@ -213,6 +214,7 @@
         <p class="card-text">Unsigned</p>
         <% end %>
   </div>
+  <% end %>
               </div>
             </div>
           </div>
