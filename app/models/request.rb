@@ -26,4 +26,5 @@ class Request < ApplicationRecord
   belongs_to :user
   belongs_to :agent
   belongs_to :gig
+  validates_uniqueness_of :user_id, scope: [:agent_id, :gig_id, :status]
 end
