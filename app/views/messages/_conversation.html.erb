@@ -43,7 +43,7 @@
 
           <% end %>
 
-            <% if Request.where(user_id: current_user.id).where(agent_id: params.fetch(:id)).where(status: "pending").first.present? %>
+            <% if Request.where(user_id: current_user.id).where(agent_id: params.fetch("id")).where(status: "pending").first.present? %>
             <%= form_with(model: Request.where(user_id: current_user.id).where(agent_id: params.fetch(:id)).where(status: "pending").first) do |form| %>
           
             <div class="field">
