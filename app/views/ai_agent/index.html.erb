@@ -72,7 +72,7 @@
 <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
             <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
 <div class="actions" style="float: left">
-  <%= button_tag type: "submit", class: "btn btn-link" do %>
+  <%= button_tag type: "submit", class: "btn btn-link", id: "send-btn" do %>
     <i class="fas fa-paper-plane"></i>
   <% end %>
 </div>
@@ -95,3 +95,10 @@
 
   </dd>
 </dl>
+<script>
+$(function() {
+  var chatMessagesDiv = document.getElementById("chat2"); 
+  
+  chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight; 
+})
+</script>

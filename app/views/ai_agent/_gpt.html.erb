@@ -1,5 +1,5 @@
     <% if (gpt.role == "user" && gpt.user_id == current_user.id) || (gpt.role == "assistant" && gpt.updated_at > Gpt.where(user_id: current_user.id).first.updated_at) %>
-      <div class="card-body chat-message" data-mdb-perfect-scrollbar="true">
+      <div class="card-body chat-message" id="gpt-card" data-mdb-perfect-scrollbar="true">
         <% if gpt.role == "user" && gpt.user_id == current_user.id %>
             <div class="d-flex flex-row justify-content-start">
               <img src="<%= gpt.user.photo %>"

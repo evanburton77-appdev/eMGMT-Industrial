@@ -119,10 +119,13 @@
         <p class="text-muted mb-4">Unsigned</p>
         <% end %>
         <p class="text-muted mb-4"><%= @the_user.about %></p>
+            <% if agent_signed_in? %>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Sign Request</button>
-              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+              <a href="<%= new_message_user_path(@the_user.id) %>" name="id: <%= @the_user.id %>" class="btn btn-primary">Message <%= @the_user.first_name %></a>
+        
+             <a href="<%= new_request_user_path(@the_user.id) %>" class="btn btn-success">Sign <%= @the_user.first_name %></a>
             </div>
+            <% end %>
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
@@ -214,8 +217,8 @@
         <p class="card-text">Unsigned</p>
         <% end %>
   </div>
-  <% end %>
+ 
               </div>
             </div>
           </div>
-          <% end %>
+          <% end %> <% end %>

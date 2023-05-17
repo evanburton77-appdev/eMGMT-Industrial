@@ -29,11 +29,9 @@
       <%= link_to 'Edit Gig', edit_gig_path(request.gig), class: "btn btn-success" %>
       <%= link_to 'Delete Gig', request.gig, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     <% else %>
-        <a href="<%= new_message_user_path(request.gig.user.id) %>" name="id: <%= request.gig.user.id %>" class="btn btn-primary">Message <%= request.gig.user.first_name %></a>
-        
-        <a href="<%= new_request_user_path(request.gig.user.id) %>" class="btn btn-success">Sign <%= request.gig.user.first_name %></a>
+         <a href="<%= user_path(request.gig.user.id) %>" name="id: <%= request.gig.user.id %>" class="btn btn-primary">View <%= request.gig.user.first_name %>'s Profile</a>
     <% end %>
-  <% else %>
+  <% elsif agent_signed_in %>
         <a href="<%= new_message_user_path(request.gig.user.id) %>" name="id: <%= request.gig.user.id %>" class="btn btn-primary">Message <%= request.gig.user.first_name %></a>
         
         <a href="<%= new_request_user_path(request.gig.user.id) %>" class="btn btn-success">Sign <%= request.gig.user.first_name %></a>

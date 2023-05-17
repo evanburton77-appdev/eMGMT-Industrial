@@ -1,5 +1,7 @@
 var added_gpt = $("<%= escape_javascript(render 'ai_agent/gpt', gpt: @gpt) %>");
 added_gpt.hide();
 $("#new_gpt_form").before(added_gpt);
-added_gpt.slideDown();
+added_gpt.slideDown(function() {
+  $('#chat2').scrollTop(document.getElementById("chat2").scrollHeight)
+});
 $("#new_gpt_form_box #gpt_content").val("");
