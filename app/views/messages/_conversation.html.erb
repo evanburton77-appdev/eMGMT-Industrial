@@ -52,7 +52,7 @@
             <%= form.submit "Accept", class: "btn btn-success btn-lg btn-rounded float-end" %>
             <% end %>
 
-            <button class="btn btn-danger btn-lg btn-rounded float-end">Reject for <%=  Request.where(user_id: current_user.id).where(agent_id: params.fetch(:id)).where(status: "pending").first.gig.title %></button>
+            <button class="btn btn-danger btn-lg btn-rounded float-end">Reject for <%=  Request.where(user_id: current_user.id).where(agent_id: params.fetch("id")).where(status: "pending").first.gig.title %></button>
           <% end %>  
               <%= form_with(model: Message.new, class: "form-outline form-white", method: "post", local: false) do |form| %>
           <li id="<%= dom_id(@message) %>_form" class="mb-3">
